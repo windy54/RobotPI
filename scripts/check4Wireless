@@ -1,0 +1,13 @@
+#!/bin/sh
+# is there a hub connected
+if ! lsusb | grep Wireless
+then
+  echo "hub not connected "
+  sudo python /home/pi/StevesPrograms/Stevesrover.py
+else
+  echo "hub connected"
+  pwd
+  cd /home/pi/RasPiConnectServer
+  sudo python RasPiConnectServer.py
+fi
+

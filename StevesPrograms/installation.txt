@@ -1,0 +1,80 @@
+copy latest rasp[bian to card
+boot and change settings from raspi-config
+sudonano /etc/network/interfaces
+	auto lo
+
+	iface lo inet loopback
+	iface eth0 inet dhcp
+	address 192.168.0.4
+	netmask 255.255.255.0
+
+	allow-hotplug wlan0
+	iface wlan0 inet manual
+	wpa-roam /etc/wpa_supplicant/wpa_supplicant.conf
+	iface default inet dhcp
+open wifi config and add network
+sudo apt-get update
+sudo apt-get upgrade
+sudo apt-get dist-upgrade
+
+USB ROBOT
+	sudo apt-get intall git -y
+	git clone git://github.com/pddring/robo-arm-pi.git
+	cd robo-arm-pi
+	sudo apt-get install build-essential
+	sudo apt-get install libusb-dev
+	sudo apt-get install ncurses-dev
+	make
+	cd ..
+	
+raspi-robot simon monk
+	sudo apt-get install python-rpi.gpio
+	sudo apt-get install python-serial
+	wget https://github.com/simonmonk/raspirobotboard/archive/master.zip
+	unzip master.zip
+	cd raspirobotboard-master/
+	sudo python setup.py install
+	cd ..
+
+bluetooth etc from cambridge
+	www.cl.cam.ac.uk/projects/raspberrypi/tutorials/robot/downloads/
+	sudo apt-get install python-smbus ipython -y
+	sudo apt-get install python-cwiid python-scipy python-numpy python-pygame -y
+	sudo apt-get install python-setuptools libsdl-dev -y 
+	sudo apt-get install --no-install-recommends bluetooth
+	
+RaspiConnectServer
+	cd ~
+	sudo easy_install web.py
+	git clone git://github.com/milocreek/RasPiConnectServer
+	copy config and locl files
+
+GPIO and wiring pi from RaspiTV
+	sudo apt-get install python-dev python-pip -y
+	sudo pip install wiringpi2
+	
+
+PYTTSX
+	wget https://pypi.python.org/packages/source/p/pyttsx/pyttsx-1.1.tar.gz
+	gunzip pyttsx-1.1.tar.gz
+	tar -xf pyttsx-1.1.tar
+	cd pyttsx-1.1/
+	sudo python setup.py install
+	sudo apt-get install espeak -y
+	cd ..
+	
+autostart
+	sudo nano autostart
+	bash /home/pi/scripts/check4Wireless
+	sudo chmod +x autostart
+	sudo nane /etc/rc.local
+	just before exit 0 add the following line
+	bash /home/pi/autostart
+Sound
+	sudo nano /boot/config.txt
+	hdmi_ignore_edid_audio=1
+	what about always using hdmi?
+
+vncserver
+	sudo apt-get install tightvncserver
+

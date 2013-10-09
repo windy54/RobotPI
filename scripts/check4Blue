@@ -1,0 +1,15 @@
+#!/bin/sh
+# is there a hub connected
+if  lsusb | grep Blue
+then
+  echo "Bluetooth connected "
+  sudo python /home/pi/StevesPrograms/Stevesrover.py
+elif lsusb | grep Wireless
+then
+  echo "wifi adapter"
+  pwd
+  cd /home/pi/RasPiConnectServer
+  sudo python RasPiConnectServer.py
+else
+  echo " no wifi or bluetooth"
+fi
